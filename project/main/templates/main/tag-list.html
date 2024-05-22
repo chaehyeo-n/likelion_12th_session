@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <h1>해시태그 목록</h1>
+    <hr>
+    {% for t in tags %}
+    <div>
+        <h2><a href="{% url 'main:tag-blogs' t.id %}">#{{t.name}}</a></h2>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

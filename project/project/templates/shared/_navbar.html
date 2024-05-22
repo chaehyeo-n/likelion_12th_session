@@ -1,6 +1,23 @@
 <nav class="navbar-container">
     <!-- mainpage 링크 연결 -->
-    <a class="navbar-link" href="{% url 'mainpage' %}">DGU_likelion_12th</a>
+    <a class="navbar-link" href="{% url 'main:mainpage' %}">DGU_likelion_12th</a>
     <!-- secondpage 링크 연결 -->
-    <a class="navbar-link" href="{% url 'secondpage' %}">Second Page</a>
+    <a class="navbar-link" href="{% url 'main:secondpage' %}">Second Page</a>
+
+    <a class="navbar-link" href="{% url 'main:tag-list' %}">Tag</a>
+
+    <div class="nav-right">
+        {% if user.is_authenticated %}
+        <ul class="nav-link-account">
+            <li class="nav-link-user">{{user.username}}</li>
+            <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
+            <li><a href="{% url 'users:mypage' %}">mypage</a></li>
+        </ul>
+        {% else %}
+        <ul class="nav-link-account">
+            <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+            <li><a href="{% url 'accounts:signup' %}">signup</a></li>
+        </ul>
+        {% endif %}
+    </div>
 </nav>

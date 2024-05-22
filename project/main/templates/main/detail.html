@@ -4,7 +4,38 @@
 <h3>{{blog.title}}</h3>
 작성자 : {{blog.writer}}
 날짜 : {{blog.pub_date}}
+<p>
+    {% for tag in blog.tags.all %}
+        <a href="{% url 'main:tag-blogs' tag.id %}">#{{ tag.name }}</a>
+    {% endfor %}
+</p>
 <hr/>
+{% if blog.image %}
+    <p><img src="{{ blog.image.url }}" alt="사진" width="100px"></p>
+{% endif %}
 <p>{{blog.body}}</p>
+{% if blog.writer == user %}
+<a href="{% url 'main:edit' blog.id %}">글 수정하기</a>
+<a href="{% url 'main:delete' blog.id %}">삭제하기</a>
+{% endif %}
 <br>
+
+<div class="comment_container">
+    <div class="comment_form">
+    <h2></h2>
+    <form action="{% url 'main:detail' blog.id %}" method="POST">
+    {% csrf_token %}
+    댓글 쓰기 : <input type="text" name="content">
+    <input type="submit" name="submit">
+    </form>
+    </div>
+    <div class="comment_list">
+    {% for comment in comments %}
+    <hr>
+    <h4>작성자 : {{comment.writer}}</h4>
+    <p>내용 : {{comment.content}}</p>
+    <p>{{comment.pub_date}}</p>
+    {% endfor %}
+    </div>
+   </div>
 {% endblock %}

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}"
+    <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIKELION 12th Django Session</title>
     <style>
@@ -39,6 +39,36 @@
         .contents {
             font-size: 50px;
             margin: 20px;
+        }
+
+        /*네비게이션 수정(4주차)*/
+
+        .nav-right {
+            margin-left: auto;
+        }
+
+        .nav-link-user{
+            list-style-type: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .nav-link-account {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link-account li {
+            display: inline;
+            padding: 10px 20px;
+            text-decoration: none; 
+        }
+
+        .nav-link-account li a {
+            color: white;
+            text-decoration: none; 
         }
     </style>
 </head>
