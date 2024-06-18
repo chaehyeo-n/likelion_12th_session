@@ -4,7 +4,22 @@
 {% block content %}
 <h1>마이페이지에 오신 것을 환영합니다</h1>
 
-<h3>{{ user.profile.nickname }}님 안녕하세요</h3>
+<h3>{{ user.profile.user.username }}님 안녕하세요</h3>
 <h3>당신의 학과는 {{ user.profile.department }}입니다</h3>
+
+<p>팔로워<br>{{ user.profile.followers.count}}명</p>
+<p>팔로잉<br>{{ user.profile.followings.count}}명</p>
+
+{% if request.user != user %}
+    {% if request.user.profile in user.profile.followers.all %}
+        <a href="{% url 'users:follow' user.id %}">
+            <button type="button" class="btn btn-outline-info">언팔로우</button>
+        </a>
+    {% else %}
+        <a href="{% url 'users:follow' user.id %}">
+            <button type="button" class="btn btn-info">팔로우</button>
+        </a>
+    {% endif %}
+{% endif %}
 
 {% endblock %}

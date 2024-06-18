@@ -2,8 +2,12 @@
 {% load static %}
 {% block content %}
 <h3>{{blog.title}}</h3>
-작성자 : {{blog.writer}}
+<a href="{% url 'users:mypage' blog.writer.id %}">작성자 : {{blog.writer}}</a>
 날짜 : {{blog.pub_date}}
+<a href="{% url 'main:likes' blog.id %}">
+    {% if user in blog.like.all %} 취소 {% else %} 좋아요 {% endif %}
+</a>
+{{blog.like_count}}개
 <p>
     {% for tag in blog.tags.all %}
         <a href="{% url 'main:tag-blogs' tag.id %}">#{{ tag.name }}</a>
